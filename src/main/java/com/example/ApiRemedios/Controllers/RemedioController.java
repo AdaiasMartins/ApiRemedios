@@ -4,6 +4,8 @@ package com.example.ApiRemedios.Controllers;
 import com.example.ApiRemedios.Remedio.DadosCadastroRemedio;
 import com.example.ApiRemedios.Remedio.Remedio;
 import com.example.ApiRemedios.Remedio.RemediosRepository;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +20,8 @@ public class RemedioController {
     private RemediosRepository repository;
 
     @PostMapping
-    public void cadastrar(@RequestBody DadosCadastroRemedio dados){
+    @Transactional
+    public void cadastrar(@RequestBody @Valid DadosCadastroRemedio dados){
         repository.save(new Remedio(dados));
     }
 }
