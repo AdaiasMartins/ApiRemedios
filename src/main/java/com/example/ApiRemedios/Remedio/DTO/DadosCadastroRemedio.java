@@ -1,5 +1,7 @@
-package com.example.ApiRemedios.Remedio;
+package com.example.ApiRemedios.Remedio.DTO;
 
+import com.example.ApiRemedios.Remedio.Laboratorio;
+import com.example.ApiRemedios.Remedio.Via;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;

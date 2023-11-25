@@ -1,6 +1,9 @@
 package com.example.ApiRemedios.Remedio;
 
+import com.example.ApiRemedios.Remedio.DTO.DadosAtualizarRemedio;
+import com.example.ApiRemedios.Remedio.DTO.DadosCadastroRemedio;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -33,5 +36,17 @@ public class Remedio {
         this.quantidade = dados.quantidade();
         this.validade = dados.validade();
         this.laboratorio = dados.laboratorio();
+    }
+
+    public void atualizarInfomacao(@Valid DadosAtualizarRemedio dados) {
+        if(dados.nome() != null){
+            this.nome = dados.nome();
+        }
+        if(dados.Laboratorio() != null){
+            this.laboratorio = dados.Laboratorio();
+        }
+        if(dados.via() != null){
+            this.via =  dados.via();
+        }
     }
 }
