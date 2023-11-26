@@ -37,6 +37,12 @@ public class RemedioController {
         remedio.atualizarInfomacao(dados);
     }
 
+    @PutMapping("/{id}")
+    public void reativar(@PathVariable Long id){
+        var remedio = repository.getReferenceById(id);
+        remedio.reativar();
+    }
+
     @DeleteMapping("/{id}")
     @Transactional
     public void excluir(@PathVariable Long id){
