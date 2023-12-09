@@ -1,8 +1,8 @@
 package com.example.ApiRemedios.Remedio.DTO;
 
-import com.example.ApiRemedios.Remedio.Entidades.Laboratorio;
-import com.example.ApiRemedios.Remedio.Entidades.Remedio;
-import com.example.ApiRemedios.Remedio.Entidades.Via;
+import com.example.ApiRemedios.Remedio.Entities.Laboratorio;
+import com.example.ApiRemedios.Remedio.Entities.Remedio;
+import com.example.ApiRemedios.Remedio.Entities.Via;
 
 import java.time.LocalDate;
 

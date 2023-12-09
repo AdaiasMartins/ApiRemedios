@@ -1,4 +1,4 @@
-package com.example.ApiRemedios.Remedio.Entidades;
+package com.example.ApiRemedios.Remedio.Entities;
 
 public enum Via {
     ORAL,

@@ -1,4 +1,4 @@
-package com.example.ApiRemedios.Remedio.Entidades;
+package com.example.ApiRemedios.Remedio.Entities;
 
 import com.example.ApiRemedios.Remedio.DTO.DadosAtualizarRemedio;
 import com.example.ApiRemedios.Remedio.DTO.DadosCadastroRemedio;

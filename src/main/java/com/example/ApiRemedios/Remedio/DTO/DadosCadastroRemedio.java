@@ -1,7 +1,7 @@
 package com.example.ApiRemedios.Remedio.DTO;
 
-import com.example.ApiRemedios.Remedio.Entidades.Laboratorio;
-import com.example.ApiRemedios.Remedio.Entidades.Via;
+import com.example.ApiRemedios.Remedio.Entities.Laboratorio;
+import com.example.ApiRemedios.Remedio.Entities.Via;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;

@@ -1,6 +1,6 @@
-package com.example.ApiRemedios.Remedio.Repositorios;
+package com.example.ApiRemedios.Remedio.Repository;
 
-import com.example.ApiRemedios.Remedio.Entidades.Remedio;
+import com.example.ApiRemedios.Remedio.Entities.Remedio;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

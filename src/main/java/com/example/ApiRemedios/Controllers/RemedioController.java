@@ -5,8 +5,8 @@ import com.example.ApiRemedios.Remedio.DTO.DadosAtualizarRemedio;
 import com.example.ApiRemedios.Remedio.DTO.DadosCadastroRemedio;
 import com.example.ApiRemedios.Remedio.DTO.DadosDetalhamentoRemedio;
 import com.example.ApiRemedios.Remedio.DTO.DadosListagemRemedios;
-import com.example.ApiRemedios.Remedio.Entidades.Remedio;
-import com.example.ApiRemedios.Remedio.Repositorios.RemediosRepository;
+import com.example.ApiRemedios.Remedio.Repository.RemediosRepository;
+import com.example.ApiRemedios.Remedio.Services.ServicesRemedio;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,53 +22,40 @@ public class RemedioController {
     @Autowired
     private RemediosRepository repository;
 
+    private ServicesRemedio services;
+
     @PostMapping
     @Transactional
-    public ResponseEntity<Void> cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
-        repository.save(new Remedio(dados));
-
-        return ResponseEntity.noContent().build();
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
+        return services.cadastrar(dados);
     }
 
     @GetMapping
     public ResponseEntity<List<DadosListagemRemedios>> listar() {
-        var lista = repository.findAllByAtivoTrue().stream().map(DadosListagemRemedios::new).toList();
-
-        return ResponseEntity.ok(lista);
+        return services.listar();
     }
 
     @PutMapping
     @Transactional
     public ResponseEntity<DadosDetalhamentoRemedio> atualizar(@RequestBody @Valid DadosAtualizarRemedio dados){
-        var remedio = repository.getReferenceById(dados.id());
-        remedio.atualizarInfomacao(dados);
-
-        return ResponseEntity.ok(new DadosDetalhamentoRemedio(remedio));
+        return services.atualizar(dados);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> reativar(@PathVariable Long id){
-        var remedio = repository.getReferenceById(id);
-        remedio.reativar();
-
-        return ResponseEntity.noContent().build();
+        return services.reativar(id);
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> excluir(@PathVariable Long id){
-        repository.deleteById(id);
-
-        return ResponseEntity.noContent().build();
+        return services.excluir(id);
     }
 
     @DeleteMapping("inativar/{id}")
     @Transactional
     public ResponseEntity<Void> inativar(@PathVariable Long id){
-        var remedio = repository.getReferenceById(id);
-        remedio.inativar();
-
-        return ResponseEntity.noContent().build();
+        return services.inativar(id);
     }
 
 }
