@@ -1,4 +1,4 @@
-package com.example.ApiRemedios.Remedio;
+package com.example.ApiRemedios.Remedio.Entidades;
 
 public enum Laboratorio {
     MEDLEY,

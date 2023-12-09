@@ -1,11 +1,12 @@
 package com.example.ApiRemedios.Controllers;
 
 
-import com.example.ApiRemedios.Remedio.*;
 import com.example.ApiRemedios.Remedio.DTO.DadosAtualizarRemedio;
 import com.example.ApiRemedios.Remedio.DTO.DadosCadastroRemedio;
 import com.example.ApiRemedios.Remedio.DTO.DadosDetalhamentoRemedio;
 import com.example.ApiRemedios.Remedio.DTO.DadosListagemRemedios;
+import com.example.ApiRemedios.Remedio.Entidades.Remedio;
+import com.example.ApiRemedios.Remedio.Repositorios.RemediosRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
