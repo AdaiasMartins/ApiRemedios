@@ -1,2 +1,1 @@
-alter table Remedios add ativo tinyint;
-update Remedios set ativo = 1;
+alter table Remedios add ativo boolean default true;
