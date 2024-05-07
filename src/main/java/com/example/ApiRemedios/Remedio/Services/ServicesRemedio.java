@@ -37,7 +37,6 @@ public class ServicesRemedio {
 
     public ResponseEntity<List<DadosListagemRemedios>> listar() {
         var lista = repository.findAllByAtivoTrue().stream().map(DadosListagemRemedios::new).toList();
-
         return ResponseEntity.ok(lista);
     }
 
