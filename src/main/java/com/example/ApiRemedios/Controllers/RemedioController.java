@@ -5,6 +5,7 @@ import com.example.ApiRemedios.Remedio.DTO.DadosAtualizarRemedio;
 import com.example.ApiRemedios.Remedio.DTO.DadosCadastroRemedio;
 import com.example.ApiRemedios.Remedio.DTO.DadosDetalhamentoRemedio;
 import com.example.ApiRemedios.Remedio.DTO.DadosListagemRemedios;
+import com.example.ApiRemedios.Remedio.Entities.Remedio;
 import com.example.ApiRemedios.Remedio.Repository.RemediosRepository;
 import com.example.ApiRemedios.Remedio.Services.ServicesRemedio;
 import jakarta.transaction.Transactional;
@@ -26,36 +27,39 @@ public class RemedioController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
-        return services.cadastrar(dados);
+    public ResponseEntity<Remedio> cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
+        return ResponseEntity.ok(services.cadastrar(dados));
     }
 
     @GetMapping
     public ResponseEntity<List<DadosListagemRemedios>> listar() {
-        return services.listar();
+        return ResponseEntity.ok(services.listar());
     }
 
     @PutMapping
     @Transactional
     public ResponseEntity<DadosDetalhamentoRemedio> atualizar(@RequestBody @Valid DadosAtualizarRemedio dados){
-        return services.atualizar(dados);
+        return ResponseEntity.ok(services.atualizar(dados));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> reativar(@PathVariable Long id){
-        return services.reativar(id);
+        services.reativar(id);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> excluir(@PathVariable Long id){
-        return services.excluir(id);
+        services.excluir(id);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("inativar/{id}")
     @Transactional
     public ResponseEntity<Void> inativar(@PathVariable Long id){
-        return services.inativar(id);
+        services.inativar(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

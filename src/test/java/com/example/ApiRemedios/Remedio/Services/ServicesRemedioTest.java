@@ -33,7 +33,7 @@ class ServicesRemedioTest {
     public void deveRetornarUmaListaDeRemedios(){
         Remedio remedio = new Remedio(new DadosCadastroRemedio("dipirona", Via.ORAL, "loteexemplo", 10, LocalDate.of(2025, 6,20), Laboratorio.MEDLEY));
         Mockito.when(remediosRepository.findAllByAtivoTrue()).thenReturn(Collections.singletonList(remedio));
-        ResponseEntity<List<DadosListagemRemedios>> remedios = servicesRemedio.listar();
+        List<DadosListagemRemedios> remedios = servicesRemedio.listar();
         System.out.println(remedios);
     }
 

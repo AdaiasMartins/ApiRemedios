@@ -52,11 +52,13 @@ public class Remedio {
         }
     }
 
-    public void inativar() {
+    public Void inativar() {
         this.ativo = false;
+        return null;
     }
 
-    public void reativar() {
+    public Void reativar() {
         this.ativo = true;
+        return null;
     }
 }

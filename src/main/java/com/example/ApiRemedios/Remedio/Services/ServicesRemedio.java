@@ -29,41 +29,33 @@ public class ServicesRemedio {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
-        repository.save(new Remedio(dados));
-
-        return ResponseEntity.ok(dados);
+    public Remedio cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
+        Remedio remedio = new Remedio(dados);
+        return repository.save(remedio);
     }
 
-    public ResponseEntity<List<DadosListagemRemedios>> listar() {
-        var lista = repository.findAllByAtivoTrue().stream().map(DadosListagemRemedios::new).toList();
-        return ResponseEntity.ok(lista);
+    public List<DadosListagemRemedios>listar() {
+        return repository.findAllByAtivoTrue().stream().map(DadosListagemRemedios::new).toList();
     }
 
-    public ResponseEntity<DadosDetalhamentoRemedio> atualizar(@RequestBody @Valid DadosAtualizarRemedio dados) {
+    public DadosDetalhamentoRemedio atualizar(@RequestBody @Valid DadosAtualizarRemedio dados) {
         var remedio = repository.getReferenceById(dados.id());
         remedio.atualizarInfomacao(dados);
 
-        return ResponseEntity.ok(new DadosDetalhamentoRemedio(remedio));
+        return new DadosDetalhamentoRemedio(remedio);
     }
 
-    public ResponseEntity<Void> reativar(@PathVariable Long id){
+    public void reativar(@PathVariable Long id){
         var remedio = repository.getReferenceById(id);
         remedio.reativar();
-
-        return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<Void> excluir(@PathVariable Long id){
+    public void excluir(@PathVariable Long id){
         repository.deleteById(id);
-
-        return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<Void> inativar(@PathVariable Long id){
+    public void inativar(@PathVariable Long id){
         var remedio = repository.getReferenceById(id);
         remedio.inativar();
-
-        return ResponseEntity.noContent().build();
     }
 }
