@@ -6,6 +6,8 @@ import com.example.ApiRemedios.Remedio.Entities.Laboratorio;
 import com.example.ApiRemedios.Remedio.Entities.Remedio;
 import com.example.ApiRemedios.Remedio.Entities.Via;
 import com.example.ApiRemedios.Remedio.Repository.RemediosRepository;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,11 +32,15 @@ class ServicesRemedioTest {
     private DadosCadastroRemedio dadosCadastroRemedio;
 
     @Test
+    @DisplayName("Deve retornar uma lista com apenas um remedio")
     public void deveRetornarUmaListaDeRemedios(){
         Remedio remedio = new Remedio(new DadosCadastroRemedio("dipirona", Via.ORAL, "loteexemplo", 10, LocalDate.of(2025, 6,20), Laboratorio.MEDLEY));
         Mockito.when(remediosRepository.findAllByAtivoTrue()).thenReturn(Collections.singletonList(remedio));
         List<DadosListagemRemedios> remedios = servicesRemedio.listar();
         System.out.println(remedios);
+
+        Assertions.assertEquals(1, remedios.size());
+
     }
 
 }
