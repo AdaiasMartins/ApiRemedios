@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -27,8 +28,11 @@ public class RemedioController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Remedio> cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
-        return ResponseEntity.ok(services.cadastrar(dados));
+    public ResponseEntity<DadosDetalhamentoRemedio> cadastrar(@RequestBody @Valid DadosCadastroRemedio dados, UriComponentsBuilder uriBuilder) {
+        Remedio remedio = new Remedio(dados);
+        var uri = uriBuilder.path("remedios/{id}").buildAndExpand(remedio.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoRemedio(remedio));
     }
 
     @GetMapping

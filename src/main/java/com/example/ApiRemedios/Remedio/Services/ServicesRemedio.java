@@ -29,8 +29,7 @@ public class ServicesRemedio {
 
     @PostMapping
     @Transactional
-    public Remedio cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
-        Remedio remedio = new Remedio(dados);
+    public Remedio cadastrar(@RequestBody @Valid Remedio remedio) {
         return repository.save(remedio);
     }
 
